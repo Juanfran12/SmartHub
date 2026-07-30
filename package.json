@@ -1,7 +1,6 @@
 {
   "name": "smarthub-ultra",
-  "version": "3.0.0",
-  "description": "SmartHub Ultra Premium Platform",
+  "version": "3.1.0",
   "main": "server.js",
   "scripts": { "start": "node server.js" },
   "dependencies": { "express": "^4.18.2" }
