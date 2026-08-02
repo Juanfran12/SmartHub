@@ -1,273 +1,574 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SmartHub</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:"Inter",Arial,sans-serif;
 }
 
 body{
-    background:#0f172a;
+    background:#020617;
+    color:white;
+    min-height:100vh;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:260px;
+    background:rgba(15,23,42,.85);
+    backdrop-filter:blur(15px);
+    border-right:1px solid rgba(255,255,255,.08);
+    padding:25px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:40px;
+}
+
+.logo span{
+    color:#3b82f6;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu button{
+    background:none;
+    border:none;
+    color:#cbd5e1;
+    text-align:left;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.menu button:hover{
+    background:#1e293b;
     color:white;
 }
 
-.container{
-    width:95%;
-    max-width:1200px;
-    margin:auto;
-    padding:30px;
+
+.content{
+    flex:1;
+    padding:35px;
 }
 
-h1{
-    margin-bottom:25px;
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
 }
+
+.header h1{
+    font-size:32px;
+}
+
+.date{
+    color:#94a3b8;
+}
+
 
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    margin-bottom:30px;
+    margin-bottom:35px;
 }
+
 
 .card{
-    background:#1e293b;
-    border-radius:15px;
-    padding:20px;
+    background:
+    linear-gradient(
+    135deg,
+    rgba(30,41,59,.9),
+    rgba(15,23,42,.9)
+    );
+    padding:25px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-.card h2{
+
+.card h3{
     color:#94a3b8;
-    font-size:18px;
+    font-size:15px;
+    margin-bottom:15px;
 }
 
-.card p{
-    margin-top:10px;
+
+.number{
     font-size:32px;
-    font-weight:bold;
+    font-weight:700;
 }
 
-.formulario{
-    background:#1e293b;
-    padding:20px;
-    border-radius:15px;
+
+.green{
+    color:#22c55e;
+}
+
+.red{
+    color:#ef4444;
+}
+
+.blue{
+    color:#3b82f6;
+}
+
+
+.panel{
+    background:#0f172a;
+    border-radius:20px;
+    padding:25px;
     margin-bottom:30px;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-.formulario h2{
+
+.panel h2{
     margin-bottom:20px;
 }
 
-input,select{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:10px;
-    background:#334155;
-    color:white;
-}
 
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    background:#1d4ed8;
-}
-
-.movimientos{
+.form-grid{
     display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:15px;
 }
 
-.movimiento{
+
+input,select{
+
     background:#1e293b;
-    padding:15px;
+    color:white;
+    border:none;
+    padding:14px;
     border-radius:12px;
+    outline:none;
+
+}
+
+
+.primary{
+
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+
+}
+
+
+.primary:hover{
+    background:#1d4ed8;
+}
+
+
+.movimientos{
+
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+}
+
+
+.movimiento{
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:#0f172a;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.08);
+
 }
 
-.ingreso{
-    border-left:6px solid #22c55e;
-}
 
-.gasto{
-    border-left:6px solid #ef4444;
-}
-
-.info h3{
+.movimiento h3{
     margin-bottom:5px;
 }
 
-.info span{
+
+.movimiento small{
     color:#94a3b8;
-    font-size:14px;
 }
+
 
 .importe{
+
     font-size:22px;
     font-weight:bold;
+
 }
 
-.eliminar{
+
+.btn-delete{
+
+    margin-left:15px;
     background:#dc2626;
-    width:auto;
-    padding:10px 15px;
-    margin-left:20px;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+
 }
+
+
+
+@media(max-width:800px){
+
+.sidebar{
+    display:none;
+}
+
+.content{
+    padding:20px;
+}
+
+.header h1{
+    font-size:24px;
+}
+
+}
+
+
 </style>
 
 </head>
+
+
 <body>
 
-<div class="container">
 
-<h1>💰 SmartHub</h1>
+<div class="app">
+
+
+<aside class="sidebar">
+
+
+<div class="logo">
+Smart<span>Hub</span>
+</div>
+
+
+<div class="menu">
+
+<button>🏠 Dashboard</button>
+
+<button>💰 Ingresos</button>
+
+<button>💸 Gastos</button>
+
+<button>📊 Estadísticas</button>
+
+<button>⚙ Configuración</button>
+
+</div>
+
+
+</aside>
+
+
+
+<main class="content">
+
+
+<div class="header">
+
+<h1>Dashboard</h1>
+
+<div class="date" id="fechaActual"></div>
+
+</div>
+
+
 
 <div class="cards">
 
-<div class="card">
-<h2>Saldo</h2>
-<p id="saldo">0 €</p>
-</div>
 
 <div class="card">
-<h2>Ingresos</h2>
-<p id="ingresos">0 €</p>
+
+<h3>Saldo actual</h3>
+
+<div class="number blue" id="saldo">
+0 €
 </div>
+
+</div>
+
+
 
 <div class="card">
-<h2>Gastos</h2>
-<p id="gastos">0 €</p>
+
+<h3>Ingresos</h3>
+
+<div class="number green" id="ingresos">
+0 €
 </div>
 
 </div>
 
-<div class="formulario">
+
+
+<div class="card">
+
+<h3>Gastos</h3>
+
+<div class="number red" id="gastos">
+0 €
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="panel">
 
 <h2>Nuevo movimiento</h2>
 
+
+<div class="form-grid">
+
+
 <select id="tipo">
-<option value="ingreso">Ingreso</option>
-<option value="gasto">Gasto</option>
+
+<option value="ingreso">
+Ingreso
+</option>
+
+<option value="gasto">
+Gasto
+</option>
+
 </select>
 
-<input type="text" id="concepto" placeholder="Concepto">
 
-<input type="number" id="importe" placeholder="Importe">
 
-<input type="date" id="fecha">
+<input id="concepto" placeholder="Concepto">
 
-<button onclick="guardar()">Guardar</button>
+
+<input id="importe" type="number" placeholder="Importe">
+
+
+<input id="fecha" type="date">
+
+
+<button class="primary" onclick="guardar()">
+
+Guardar
+
+</button>
+
 
 </div>
 
-<h2 style="margin-bottom:20px;">Movimientos</h2>
+
+</div>
+
+
+
+
+
+<div class="panel">
+
+
+<h2>Últimos movimientos</h2>
+
 
 <div class="movimientos" id="lista"></div>
 
+
 </div>
 
+
+
+</main>
+
+
+</div>
+
+
+
+
+
 <script>
+
+
+document.getElementById("fechaActual").innerHTML =
+new Date().toLocaleDateString();
+
+
 
 const saldo=document.getElementById("saldo");
 const ingresos=document.getElementById("ingresos");
 const gastos=document.getElementById("gastos");
 const lista=document.getElementById("lista");
 
+
+
+
+
 async function cargarDashboard(){
+
 
 const res=await fetch("/api/dashboard");
 
 const data=await res.json();
 
-saldo.innerHTML=data.saldo.toFixed(2)+" €";
-ingresos.innerHTML=data.ingresos.toFixed(2)+" €";
-gastos.innerHTML=data.gastos.toFixed(2)+" €";
+
+
+saldo.innerHTML=
+Number(data.saldo).toFixed(2)+" €";
+
+
+ingresos.innerHTML=
+Number(data.ingresos).toFixed(2)+" €";
+
+
+gastos.innerHTML=
+Number(data.gastos).toFixed(2)+" €";
+
 
 }
+
+
+
+
 
 async function cargarMovimientos(){
 
+
 const res=await fetch("/api/movimientos");
+
 
 const movimientos=await res.json();
 
+
+
 lista.innerHTML="";
 
-movimientos.forEach(m=>{
 
-lista.innerHTML+=`
 
-<div class="movimiento ${m.tipo}">
+if(movimientos.length===0){
 
-<div class="info">
-
-<h3>${m.concepto}</h3>
-
-<span>${m.fecha}</span>
-
-</div>
-
-<div style="display:flex;align-items:center;">
-
-<div class="importe">
-
-${m.tipo=="gasto"?"-":"+"}${Number(m.importe).toFixed(2)} €
-
-</div>
-
-<button class="eliminar" onclick="eliminar(${m.id})">
-
-Eliminar
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-async function guardar(){
-
-const tipo=document.getElementById("tipo").value;
-
-const concepto=document.getElementById("concepto").value;
-
-const importe=document.getElementById("importe").value;
-
-const fecha=document.getElementById("fecha").value;
-
-if(concepto==""||importe==""||fecha==""){
-
-alert("Completa todos los campos");
+lista.innerHTML=
+"<p style='color:#94a3b8'>Sin movimientos</p>";
 
 return;
 
 }
 
+
+
+movimientos.forEach(m=>{
+
+
+lista.innerHTML+=`
+
+
+<div class="movimiento">
+
+
+<div>
+
+<h3>${m.concepto}</h3>
+
+<small>${m.fecha}</small>
+
+</div>
+
+
+<div>
+
+
+<span class="importe ${m.tipo}">
+
+${m.tipo==="gasto"?"-":"+"}
+${Number(m.importe).toFixed(2)} €
+
+</span>
+
+
+
+<button class="btn-delete" onclick="eliminar(${m.id})">
+
+🗑
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+async function guardar(){
+
+
+const movimiento={
+
+
+tipo:document.getElementById("tipo").value,
+
+concepto:document.getElementById("concepto").value,
+
+importe:document.getElementById("importe").value,
+
+fecha:document.getElementById("fecha").value
+
+
+};
+
+
+
 await fetch("/api/movimientos",{
+
 
 method:"POST",
 
@@ -277,31 +578,27 @@ headers:{
 
 },
 
-body:JSON.stringify({
 
-tipo,
+body:JSON.stringify(movimiento)
 
-concepto,
-
-importe,
-
-fecha
-
-})
 
 });
 
-document.getElementById("concepto").value="";
 
-document.getElementById("importe").value="";
 
 cargarDashboard();
 
 cargarMovimientos();
 
+
 }
 
+
+
+
+
 async function eliminar(id){
+
 
 await fetch("/api/movimientos/"+id,{
 
@@ -309,17 +606,26 @@ method:"DELETE"
 
 });
 
+
 cargarDashboard();
 
 cargarMovimientos();
+
 
 }
 
+
+
+
 cargarDashboard();
 
 cargarMovimientos();
 
+
+
 </script>
 
+
 </body>
+
 </html>
